@@ -1,32 +1,74 @@
 import React, { useRef } from 'react'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/native'
+import { Button, KeyboardAvoidingView } from 'react-native'
+import styled from 'styled-components/native'
+import axios from 'axios'
+import { useStateValue } from '../../State/context'
+import * as action from '../../State/actionTypes'
 
 export default function Login(){
-  const usernameRef = useRef()
-  const passwordRef = useRef()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigation = useNavigation()
+  cosnt [__, dispatch] = useStateValue()
+
+  const handleSubmit = async () => {
+    console.log(email, password)
+
+    const response = await axios.post('/login', {
+      data: {
+        email, 
+        password
+      }
+    })
+
+    console.log(response.data)
+
+    if(response.status === 200) {
+      const { firstName, lastName, email } = response.data
+      dispatch({
+        type: action.ADD_USER, 
+        payload: {
+          firstName, 
+          lastName, 
+          email
+        }
+      })
+      navigation.navigate('home')
+    }
+  }
 
   return (
-    <LoginContainer>
+    <KeyboardAvoidingView 
+      style={{flex: 1}}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <LoginContainer>
+      <Header>Login</Header>
+
       <Label>Username: </Label>
       <InputField 
         placeholder="Username"
         placeholderTextColor="white"
+        onChangeText={(text) => setEmail(text)}
       />
 
       <Label>Password: </Label>
       <InputField 
         placeholder="Pasword"
         placeholderTextColor="white"
-        ref={usernameRef}
+        onChangeText={(text) => setPassword(text)}
       />
 
       <Button 
         color="gold"
         title="Sign In"
         ref={passwordRef}
+        onPress={handleSubmit}
       />
     </LoginContainer>
+    </KeyboardAvoidingView>
+    
   )
 }
 
@@ -40,6 +82,11 @@ const LoginContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+const Header = styled.Text`
+  font-size: 42px;
+  color: whitesmoke;
+`
 
 const Label = styled.Text`
   color: white;

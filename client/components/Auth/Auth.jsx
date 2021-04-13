@@ -30,8 +30,6 @@ export default function Auth({ navigation }){
   )
 }
 
-// export default Auth
-
 const AuthContainer = styled.View`
   background: #242323;
   height: 100%;

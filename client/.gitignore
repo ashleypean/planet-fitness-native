@@ -63,3 +63,12 @@ buck-out/
 # Expo
 .expo/*
 web-build/
+
+android/
+.buckconfig
+ios/
+.gitattributes
+
+app.json
+
+yarn.lock

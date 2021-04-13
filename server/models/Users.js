@@ -16,6 +16,7 @@ const UserSchema = mongoose.Schema({
     type: String, 
     required: true, 
     maxLength: 100,
+    unique: true,
   },
   password: {
     type: String, 
@@ -30,7 +31,7 @@ UserSchema.virtual('fullName').get(() => {
 })
 
 // Verify user login (find user and compare password with hash)
-UserSchema.statics.verifyLogin = async (email, plainTextPassword, done) => {
+UserSchema.statics.verifyLogin = async function (email, plainTextPassword, done) {
   try {
     const user = await this.model('User').findOne({ email })
     const { password } = user
@@ -49,17 +50,26 @@ UserSchema.statics.verifyLogin = async (email, plainTextPassword, done) => {
   }
 }
 
-// Add a new user to the databse
-UserSchema.methods.createNewUser = async (userObj) => {
-  const {email, plainTextPassword, firstName, lastName} = userObj
 
-  const hashedPassword = await bcrypt.hash(plainTextPassword, 10)
-  this.model('User').create({
-    email, 
-    firstName, 
-    lastName,
-    password: hashedPassword, 
-  })
+
+// Add a new user to the databse
+UserSchema.statics.createNewUser = async function (userObj) {
+  const {email, password, firstName, lastName} = userObj
+
+  console.log('plainTextPassword', password)
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const newUser = await this.model('User').create({
+      email, 
+      firstName, 
+      lastName,
+      password: hashedPassword, 
+    })
+    return { status: 200, newUser }
+  }catch(err) {
+    console.log('error creating user', err)
+    return { status: 500, err }
+  }
 }
 
 
