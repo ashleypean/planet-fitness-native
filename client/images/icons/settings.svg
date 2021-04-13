@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 22 22">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="22" height="22" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Header_Options_dark" data-name="Header Options dark" clip-path="url(#clip-path)">
+    <path id="tune_-_material" data-name="tune - material" d="M11.562,22H9V15h2.562v2.352H22v2.3H11.562V22ZM7,19H0V17H7v2Zm0-5H4.648V11.648H0v-2.3H4.648V7H7v7Zm15-3H9V9H22v2ZM17.352,7H15V0h2.352V2.352H22v2.3H17.352V7ZM13,4H0V2H13V4Z" transform="translate(22 0) rotate(90)" fill="#fff"/>
+  </g>
+</svg>
