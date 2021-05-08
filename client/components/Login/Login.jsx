@@ -1,16 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Button, KeyboardAvoidingView } from 'react-native'
 import styled from 'styled-components/native'
 import axios from 'axios'
-import { useStateValue } from '../../State/context'
+import { StateContext } from '../../State/context'
 import * as action from '../../State/actionTypes'
 
 export default function Login(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigation = useNavigation()
-  cosnt [__, dispatch] = useStateValue()
+  const { dispatch } = useContext(StateContext)
 
   const handleSubmit = async () => {
     console.log(email, password)
@@ -63,7 +63,6 @@ export default function Login(){
       <Button 
         color="gold"
         title="Sign In"
-        ref={passwordRef}
         onPress={handleSubmit}
       />
     </LoginContainer>

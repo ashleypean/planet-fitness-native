@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
 import { Button, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, View  } from 'react-native'
 import styled from 'styled-components/native'
-import { useStateValue } from '../../State/context'
 import * as action from '../../State/actionTypes'
+import { StateContext } from '../../State/context'
 
 export default function Register() {
   const [errorMessage, setErrorMessage] = useState('Passwords do not match. Please try again.')
@@ -13,7 +13,7 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
-  const [__, dispatch] = useStateValue()
+  const { dispatch } = useContext(StateContext)
   const navigation = useNavigation()
 
   const handleSubmit = async () => {
@@ -25,18 +25,14 @@ export default function Register() {
         })
 
         // On success response, update context and navigate to the home page
-        if(response.status === 200) {
+        if (response.status === 200) {
           dispatch({
             type: action.ADD_USER, 
-            payload: {
-              email, 
-              firstName, 
-              lastName
-            }
+            payload: { email, firstName, lastName }
           })
           navigation.navigate('home')
-        }else setErrorMessage('Error Occurred. Please try again.')
-      }catch(err) {
+        } else setErrorMessage('Error Occurred. Please try again.')
+      } catch(err) {
         console.log(err)
       }
 
