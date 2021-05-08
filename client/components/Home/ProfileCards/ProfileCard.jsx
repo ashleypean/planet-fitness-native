@@ -18,7 +18,6 @@ const ProfileCard = ({ card }) => {
         <Subtitle>{state.subtitle}</Subtitle>
       </Container>
     </PressableContainer>
-
   )
 }
 
@@ -40,7 +39,7 @@ const getInfo = (state = initalState, action) => {
       }
     case 'Workout List': 
       return {
-        icon: 'format-list-bulleted-type', subtile: 'Get List',
+        icon: 'format-list-bulleted-type', subtitle: 'Get List',
         title: action.type
       }
     case 'Weekly Stats': 

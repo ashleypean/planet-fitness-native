@@ -20,7 +20,7 @@ const Container = styled.View`
   justify-content: space-evenly;
   align-items: center;
   height: 50%;
-  width: 75%;
+  width: 85%;
 `
 
 
