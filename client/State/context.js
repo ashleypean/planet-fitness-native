@@ -14,14 +14,30 @@ export const initialState = {
     }
   }, 
   workouts: null,
+  settings: {
+    'Notifications': true, 
+    'Goals': true, 
+    'Activity Alerts': true,
+    'Workout Analysis': true,
+    'Behavior Track': true, 
+    'Sounds & Beeps': true,
+  }
 }
 
 const reducer = (state = initialState, action) => {
-  console.log('reducer: ', state)
+  console.log('reducer:', action.type, action.payload)
   switch(action.type) {
     case 'ADD_USER': 
       const { firstName, lastName, email } = action.payload
       return {...state, user: { firstName, lastName, email }}
+    case 'CHANGE_SETTINGS': 
+      return {
+        ...state,
+        settings: {
+          ...state.settings, 
+          [action.payload]: !state.settings[action.payload],
+        }
+      }
     default: 
       return state
   }
