@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components/native'
 import ProfileCard from './ProfileCard'
 
-const Cards = () => {
+const Cards = ({ navigation }) => {
   const cards = ['Goals', 'Workout List', 'Weekly Stats', 'Settings']
   return (
     <Container>
-      {cards.map((card) => <ProfileCard card={card} key={card} />)}
+      {cards.map((card) => <ProfileCard card={card} key={card} navigation={navigation}/>)}
     </Container>
   )
 }

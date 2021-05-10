@@ -3,7 +3,7 @@ import { Pressable } from 'react-native'
 import { Card, Avatar } from 'react-native-paper'
 import styled from 'styled-components/native'
 
-const ProfileCard = ({ card }) => {
+const ProfileCard = ({ card, navigation }) => {
   const [state, dispatch] = useReducer(getInfo, initalState)
   
   useEffect(() => {
@@ -11,7 +11,7 @@ const ProfileCard = ({ card }) => {
   }, [])
 
   return (
-    <PressableContainer>
+    <PressableContainer onPress={() => navigation.navigate(state.component)}>
       <Container>
         <Logo icon={state.icon} color="gold"/>
         <Title>{card}</Title>
@@ -35,24 +35,28 @@ const getInfo = (state = initalState, action) => {
       return {
         icon: 'trophy-outline',
         subtitle: '57% Achieved',
-        title: action.type
+        title: action.type, 
+        component: 'Goals'
       }
     case 'Workout List': 
       return {
         icon: 'format-list-bulleted-type', subtitle: 'Get List',
-        title: action.type
+        title: action.type, 
+        component: 'Workout Schedule'
       }
     case 'Weekly Stats': 
       return {
         icon: 'fire',
         subtitle: '36% more reps',
-        title: action.type
+        title: action.type, 
+        component: 'Workout Stats'
       }
     case 'Settings':
       return {
         icon: 'tune',
         subtitle: '100% Completed',
-        title: action.type
+        title: action.type, 
+        component: 'Settings'
       }
     default:
       return state

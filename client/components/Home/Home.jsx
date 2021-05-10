@@ -12,9 +12,9 @@ export default function Home({ navigation }) {
   return (
     <HomeContainer>
       <Nav component="Profile" navigation={navigation} />
-      <UserInfo />
+      <UserInfo navigation={navigation}/>
       <Quote />
-      <Cards />
+      <Cards navigation={navigation}/>
     </HomeContainer>
   )
 }

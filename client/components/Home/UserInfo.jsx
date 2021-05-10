@@ -1,19 +1,28 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
-import { Text } from 'react-native-paper'
+import { Text, Button } from 'react-native-paper'
 import { StateContext } from '../../State/context'
 
-export default function UserInfo() {
+export default function UserInfo({ navigation }) {
   const { state: { user } } = useContext(StateContext)
+
+  
 
   return (
     <Container>
       <UserProfileImage source={require('../../images/me.jpeg')}/>
-      <View>
+      <InfoContainer>
         <Username>{`${user.firstName} ${user.lastName}`}</Username>
         <MemberSince>Member Since {user.joinDate.yyyy}</MemberSince>
-      </View>
+        <Button
+          icon="pencil"
+          mode="contained"
+          color="gold"
+        >
+          Edit Profile
+        </Button>
+      </InfoContainer>
     </Container>
   )
 }
@@ -21,7 +30,7 @@ export default function UserInfo() {
 const Container = styled.View`
   background: #242323;
   height: 20%;
-  width: 75%;
+  width: 90%;
   font-family: Arial;
   display: flex;
   align-items: center;
@@ -35,10 +44,15 @@ const UserProfileImage = styled.Image`
   width: 150px;
 `
 
+const InfoContainer = styled.View`
+  display: flex;
+`
+
 const Username = styled(Text)`
   color: white;
 `
 
 const MemberSince = styled(Text)`
   color: #857f7f;
+  margin-bottom: 20px;
 `
