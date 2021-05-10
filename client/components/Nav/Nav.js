@@ -26,4 +26,5 @@ export default function Nav ({ component, navigation }) {
 const NavContainer = styled(Appbar)`
   background: transparent;
   color: white;
+  margin-bottom: 30px;
 `
