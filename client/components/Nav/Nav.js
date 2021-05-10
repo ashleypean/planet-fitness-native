@@ -16,11 +16,6 @@ export default function Nav ({ component }) {
       <Appbar.Content
         color="white" 
         title={component}/>
-
-      <Appbar.Action 
-        icon="tune"
-        color="white"
-        onPress={() => console.log('pressed')}/>
     </NavContainer>
   )
 }
