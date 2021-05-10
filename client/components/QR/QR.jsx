@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { Text } from 'react-native'
+import { IconButton, Button } from 'react-native-paper'
 import { BarCodeScanner } from 'expo-barcode-scanner'
+import styled from 'styled-components/native'
+import Nav from '../Nav/Nav'
 
 
-export default function QR() {
+const QR = () => {
   const [hasPermission, setHasPermission] = useState(null)
   const [scanned, setScanned] = useState(false)
 
@@ -20,28 +23,76 @@ export default function QR() {
     alert(`Bar code with type ${type} and data ${data} has been scanned!`)
   }
 
-  // return values in dependent on barcode permision status
+  // return values dependent on barcode permision status
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>
+    return (
+      <Container>
+        <Nav component="QR Scanner"/>
+        <Text>Requesting camera permission</Text>
+      </Container>
+    )
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>
+    return (
+      <Container>
+        <Nav component="QR Scanner"/>
+        <Instructions>Requesting camera permission</Instructions>
+        <QRContainer>
+          <IconButton 
+            icon="camera-off"
+            size={75}
+            color="red"
+            onPress={null}
+          />
+        </QRContainer>
+        <Button mode="contained" color="purple">
+          Request Camera Permission
+        </Button>
+      </Container>
+    )
   }else return (
-    <View style={styles.container}>
-      <Text>Hello</Text>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-    </View>
+    <Container>
+      <Nav component="QR Scanner"/>
+      <Instructions>Center QR Label in Frame</Instructions>
+      <QRContainer>
+        <CameraView
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        />
+      </QRContainer>
+    </Container>
   )
 }
 
-const styles = {
-  container: {
-    flex: 1, 
-    flexDirection: 'column', 
-    justifyContent: 'center',
-  }
-}
+const Container = styled.View`
+  background: #242323;
+  height: 100%;
+  width: 100%;
+  font-family: Arial;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+`
 
+const QRContainer = styled.View`
+  margin: 50px;
+  height: 255px;
+  width: 255px;
+  border: 5px dashed black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightgray;
+`
+const CameraView = styled(BarCodeScanner)`
+  height: 250px;
+  width: 250px;
+`
+
+const Instructions = styled.Text`
+  color: white;
+  margin-top: 50px;
+  font-size: 22px; 
+`
+
+
+export default QR

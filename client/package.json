@@ -7,7 +7,7 @@
     "start": "react-native start",
     "test": "jest"
   },
-  "proxy": "http://192.168.1.81:8080/api",
+  "proxy": "http://localhost:8080/api",
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
