@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { StateContext } from '../../State/context'
 import styled from 'styled-components/native'
 import { Appbar } from 'react-native-paper'
-import Menu from '../Menu/Menu'
 
 
 export default function Nav ({ component, navigation }) {
