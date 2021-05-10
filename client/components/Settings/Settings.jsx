@@ -5,7 +5,7 @@ import { Switch } from 'react-native-paper'
 import Nav from '../Nav/Nav'
 import * as actions from '../../State/actionTypes'
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
   const { state: { settings }, dispatch } = useContext(StateContext)
 
   const changeActiveValue = (option) => {
@@ -14,7 +14,7 @@ const Settings = () => {
 
   return (
     <Container>
-      <Nav component="Settings" />
+      <Nav component="Settings" navigation={navigation}/>
       {Object.keys(settings).map((option) => (
         <OptionContainer key={option}>
           <OptionText>

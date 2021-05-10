@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
 import { StateContext } from '../../State/context'
 import styled from 'styled-components/native'
-import TopNav from './TopNav'
+import Nav from '../Nav/Nav'
 import UserInfo from './UserInfo'
 import Quote from './Quote'
 import Cards from './ProfileCards/Cards'
 
-export default function Home() {
+export default function Home({ navigation }) {
   const { state: { user } } = useContext(StateContext)
 
   return (
     <HomeContainer>
-      <TopNav />
+      <Nav component="Profile" navigation={navigation} />
       <UserInfo />
       <Quote />
       <Cards />

@@ -6,7 +6,7 @@ import styled from 'styled-components/native'
 import Nav from '../Nav/Nav'
 
 
-const QR = () => {
+export default function QR({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null)
   const [scanned, setScanned] = useState(false)
 
@@ -27,7 +27,7 @@ const QR = () => {
   if (hasPermission === null) {
     return (
       <Container>
-        <Nav component="QR Scanner"/>
+        <Nav component="QR Scanner" navigation={navigation}/>
         <Text>Requesting camera permission</Text>
       </Container>
     )
@@ -35,7 +35,7 @@ const QR = () => {
   if (hasPermission === false) {
     return (
       <Container>
-        <Nav component="QR Scanner"/>
+        <Nav component="QR Scanner" navigation={navigation}/>
         <Instructions>Requesting camera permission</Instructions>
         <QRContainer>
           <IconButton 
@@ -52,7 +52,7 @@ const QR = () => {
     )
   }else return (
     <Container>
-      <Nav component="QR Scanner"/>
+      <Nav component="QR Scanner" navigation={navigation}/>
       <Instructions>Center QR Label in Frame</Instructions>
       <QRContainer>
         <CameraView
@@ -93,6 +93,3 @@ const Instructions = styled.Text`
   margin-top: 50px;
   font-size: 22px; 
 `
-
-
-export default QR
