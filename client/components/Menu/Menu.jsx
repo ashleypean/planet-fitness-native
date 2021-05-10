@@ -1,5 +1,5 @@
 import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer'
 import styled from 'styled-components/native'
 import QR from '../QR/QR'
 import Home from '../Home/Home'
@@ -26,6 +26,7 @@ const Menu = ({ activeComponent }) => {
     >
       {Object.keys(menuOptions).map((option) => (
         <Drawer.Screen 
+          key={option}
           name={option} 
           component={menuOptions[option]}
           options={{
