@@ -52,7 +52,7 @@ const Container = styled.View`
 `
 
 const OptionContainer = styled.View`
-  padding: 10px;
+  padding: 10px 20px;
   width: 100%;
   display: flex;
   flex-direction: row;
