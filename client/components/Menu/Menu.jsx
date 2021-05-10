@@ -4,17 +4,15 @@ import styled from 'styled-components/native'
 import QR from '../QR/QR'
 import Home from '../Home/Home'
 import Settings from '../Settings/Settings'
+import Schedule from '../Schedule/Schedule'
 
 
 const Menu = ({ activeComponent }) => {
-
   const Drawer = createDrawerNavigator()
-  const navigateToPage = (page) => {
-  }
 
   return (
     <Drawer.Navigator
-      initialRouteName="Settings"
+      initialRouteName="Workout Schedule"
       drawerContentOptions={{
         activeTintColor: 'purple', 
         inactiveTintColor: 'white'
@@ -43,9 +41,9 @@ export default Menu
 const menuOptions = {
   'QR Scanner': QR, 
   'Profile': Home, 
-  'Settings': Settings, 
+  'Settings': Settings,
+  'Workout Schedule': Schedule, 
   // 'Exercise': 'exercise', 
-  // 'Workout Schedule': 'schedule', 
   // 'Workout Statistics': 'statistics', 
   // 'Goals': 'goals', 
   // 'Edit Profile': 'edit-profile'
